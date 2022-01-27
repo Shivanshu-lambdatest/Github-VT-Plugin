@@ -1,0 +1,5 @@
+name: 'LT-V'
+description: 'Greet someone and record the time'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
