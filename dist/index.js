@@ -8535,7 +8535,6 @@ const core = __nccwpck_require__(9731);
 const github = __nccwpck_require__(8009);
 const {Octokit} = __nccwpck_require__(6307)
 const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN,
   });
 
 async function run() {
