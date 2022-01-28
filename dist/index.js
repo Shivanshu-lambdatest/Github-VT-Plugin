@@ -16106,6 +16106,12 @@ const core = __nccwpck_require__(9731);
 const github = __nccwpck_require__(8009);
 const {Octokit} = __nccwpck_require__(6307)
 const { createAppAuth } = __nccwpck_require__(511);
+console.log("App_ID", process.env.APP_ID)
+console.log("App_ID in integer", parseint(process.env.APP_ID))
+
+console.log("App_ID", process.env.INSTALL_ID)
+console.log("App_ID in integer", parseint(process.env.INSTALL_ID))
+
 const octokit = new Octokit({
     authStrategy: createAppAuth,
     auth: {
@@ -16136,9 +16142,10 @@ async function run() {
     const repo = github.context.repo.repo
     
     const id = await octokit.rest.checks.create({
-        owner,
-        repo,
-        getSHA
+        owner : owner,
+        repo : repo,
+        name: " Lambdatest",
+        head_sha: getSHA,
       });
 
     setTimeout(await octokit.rest.checks.update({
