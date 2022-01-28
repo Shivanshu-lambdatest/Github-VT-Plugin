@@ -16128,16 +16128,16 @@ async function run() {
         'pull_request_review_comment',
     ];
       
-    const getSHA = () => {
-        let sha = github.context.sha;
-        if (prEvents.includes(github.context.eventName)) {
-          const pull = github.context.payload.pull_request
-          if (pull?.head.sha) {
-            sha = pull?.head.sha;
-          }
-        }
-            return sha;
-    };
+    // const getSHA = () => {
+    //     let sha = github.context.sha;
+    //     if (prEvents.includes(github.context.eventName)) {
+    //       const pull = github.context.payload.pull_request
+    //       if (pull?.head.sha) {
+    //         sha = pull?.head.sha;
+    //       }
+    //     }
+    //         return sha;
+    // };
     const owner = github.context.repo.owner
     const repo = github.context.repo.repo
     
@@ -16145,8 +16145,8 @@ async function run() {
         owner : owner,
         repo : repo,
         name: " Lambdatest",
-        head_sha: getSHA,
-      });
+        head_sha: github.context.payload.pull_request ? github.context.payload.pull_request.head.sha : github.context.sha,
+          });
 
     setTimeout(await octokit.rest.checks.update({
         owner,
