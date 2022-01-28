@@ -16153,17 +16153,19 @@ async function run() {
         const res = await octokit.rest.checks.update({
             owner : owner,
             repo : repo,
-            check_run_id: id.data.id
+            check_run_id: id.data.id,
+            status: "completed",
+            conclusion: "action_required",
+            completed_at: new Date(),
+            output: {
+            title: "Lambdatest smart UI checks!",
+            summary: "The visual testing checks have been started!",
+        },
         })
     }
 
     setTimeout(update, 3000)
         
-
-
-    
-    
-
 }
 
 try{run();
