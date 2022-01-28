@@ -8534,9 +8534,14 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(9731);
 const github = __nccwpck_require__(8009);
 const {Octokit} = __nccwpck_require__(6307)
-const octokit = new Octokit({
+const appOctokit = new Octokit({
+    authStrategy: createAppAuth,
+    auth: {
+      appId: process.env.APP_ID,
+      privateKey: process.env.PRIVATE_KEY,
+      installationId: process.env.INSTALL_ID,
+    },
   });
-
 async function run() {
 
     const prEvents = [

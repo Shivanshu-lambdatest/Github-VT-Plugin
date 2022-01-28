@@ -3,3 +3,7 @@ description: 'Greet someone and record the time'
 runs:
   using: 'node16'
   main: 'dist/index.js'
+  env:
+    APP_ID: ${{ secrets.APP_ID }}
+    INSTALL_ID: ${{ secrets.INSTALL_ID }}
+    PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
