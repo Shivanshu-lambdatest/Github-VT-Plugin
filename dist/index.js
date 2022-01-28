@@ -16146,12 +16146,15 @@ async function run() {
         repo : repo,
         name: " Lambdatest",
         head_sha: github.context.payload.pull_request ? github.context.payload.pull_request.head.sha : github.context.sha,
-          });
+    });
+    console.log("created check run ID", id);
+    
+    
 
     setTimeout(await octokit.rest.checks.update({
-        owner,
-        repo,
-        id
+        owner : owner,
+        repo : repo,
+        check_run_id: id
     }), 3000)
         
 
