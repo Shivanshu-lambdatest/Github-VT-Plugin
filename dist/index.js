@@ -16154,7 +16154,7 @@ async function run() {
     setTimeout(await octokit.rest.checks.update({
         owner : owner,
         repo : repo,
-        check_run_id: id
+        check_run_id: id.data.id
     }), 3000)
         
 
