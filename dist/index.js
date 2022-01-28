@@ -16149,13 +16149,15 @@ async function run() {
     });
     console.log("created check run ID", id);
     
-    
+    async function update(){
+        const res = await octokit.rest.checks.update({
+            owner : owner,
+            repo : repo,
+            check_run_id: id.data.id
+        })
+    }
 
-    setTimeout(await octokit.rest.checks.update({
-        owner : owner,
-        repo : repo,
-        check_run_id: id.data.id
-    }), 3000)
+    setTimeout(update, 3000)
         
 
 
