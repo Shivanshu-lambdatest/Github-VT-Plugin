@@ -16114,11 +16114,7 @@ console.log("App_ID", process.env.INSTALL_ID)
 
 const octokit = new Octokit({
     authStrategy: createAppAuth,
-    auth: {
-      appId: process.env.APP_ID,
-      privateKey: process.env.PRIVATE_KEY,
-      installationId: process.env.INSTALL_ID,
-    },
+    auth: process.env.GITHUB_TOKEN
   });
 async function run() {
 
