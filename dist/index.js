@@ -8582,8 +8582,8 @@ async function run() {
             conclusion: "action_required",
             completed_at: new Date(),
             output: {
-            title: "Lambdatest smart UI checks!",
-            summary: "The visual testing checks have been started!",
+            title: "Lambdatest smart UI",
+            summary: "The visual testing checks",
         },
         })
     }
