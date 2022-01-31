@@ -8534,6 +8534,8 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(9731);
 const github = __nccwpck_require__(8009);
 const {Octokit} = __nccwpck_require__(6307)
+const fs = __nccwpck_require__(7147);
+
 //const { createAppAuth } = require("@octokit/auth-app");
 //console.log("App_ID", process.env.APP_ID)
 //console.log("App_ID in integer", parseint(process.env.APP_ID))
@@ -8562,7 +8564,7 @@ async function run() {
     //     }
     //         return sha;
     // };
-    console.log("created check run context", github.context);
+    //console.log("created check run context", github.context);
     const owner = github.context.repo.owner
     const repo = github.context.repo.repo
     
@@ -8573,8 +8575,12 @@ async function run() {
         head_sha: github.context.payload.pull_request ? github.context.payload.pull_request.head.sha : github.context.sha,
     });
     console.log("created check run ID", id);
+    fs.appendFileSync('GITHUB_ENV.env', `CHECK_RUN_ID=${id}`);
+
+    console.log("read from env variabale", process.env.CHECK_RUN_ID)
     
     async function update(){
+        console.log("read from env variabale from update part", process.env.CHECK_RUN_ID)
         const res = await octokit.rest.checks.update({
             owner : owner,
             repo : repo,
@@ -8598,7 +8604,6 @@ try{run();
     console.log(err);
     core.setFailed(error.message);
 }
-
 })();
 
 module.exports = __webpack_exports__;
