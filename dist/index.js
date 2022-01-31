@@ -8548,23 +8548,7 @@ const octokit = new Octokit({
   });
 async function run() {
 
-    // const prEvents = [
-    //     'pull_request',
-    //     'pull_request_review',
-    //     'pull_request_review_comment',
-    // ];
-      
-    // const getSHA = () => {
-    //     let sha = github.context.sha;
-    //     if (prEvents.includes(github.context.eventName)) {
-    //       const pull = github.context.payload.pull_request
-    //       if (pull?.head.sha) {
-    //         sha = pull?.head.sha;
-    //       }
-    //     }
-    //         return sha;
-    // };
-    //console.log("created check run context", github.context);
+
     const owner = github.context.repo.owner
     const repo = github.context.repo.repo
     
@@ -8576,8 +8560,9 @@ async function run() {
     });
     console.log("created check run ID", id);
     process.env['CHECK_RUN_ID'] = `${id.data.id}`;
-
+    process.env['BUILD_NAME']=`${id.data.id}||${owner}||${repo}||${process.env.INSTALL_ID}`
     console.log("read from env variabale", process.env.CHECK_RUN_ID)
+    console.log("read from env variabale build", process.env.BUILD_NAME)
     
     async function update(){
         console.log("read from env variabale from update part", process.env.CHECK_RUN_ID)
