@@ -8575,7 +8575,7 @@ async function run() {
         head_sha: github.context.payload.pull_request ? github.context.payload.pull_request.head.sha : github.context.sha,
     });
     console.log("created check run ID", id);
-    fs.appendFileSync('GITHUB_ENV.env', `CHECK_RUN_ID=${id}`);
+    process.env['CHECK_RUN_ID'] = `${id.data.id}`;
 
     console.log("read from env variabale", process.env.CHECK_RUN_ID)
     
@@ -8584,7 +8584,7 @@ async function run() {
         const res = await octokit.rest.checks.update({
             owner : owner,
             repo : repo,
-            check_run_id: id.data.id,
+            check_run_id: process.env.CHECK_RUN_ID,
             status: "completed",
             conclusion: "action_required",
             completed_at: new Date(),
