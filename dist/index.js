@@ -8546,11 +8546,11 @@ const octokit = new Octokit({
   });
 async function run() {
 
-    const prEvents = [
-        'pull_request',
-        'pull_request_review',
-        'pull_request_review_comment',
-    ];
+    // const prEvents = [
+    //     'pull_request',
+    //     'pull_request_review',
+    //     'pull_request_review_comment',
+    // ];
       
     // const getSHA = () => {
     //     let sha = github.context.sha;
@@ -8562,6 +8562,7 @@ async function run() {
     //     }
     //         return sha;
     // };
+    console.log("created check run context", github.context);
     const owner = github.context.repo.owner
     const repo = github.context.repo.repo
     
